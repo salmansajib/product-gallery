@@ -33,10 +33,10 @@ function App() {
               src={selectedImage}
               alt="Selected Phone"
               className="w-150 h-100 object-cover mx-auto rounded-xl overflow-hidden"
-              initial={{ opacity: 0, y: 250 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -250 }}
-              transition={{ duration: 0.5, ease: "linear" }}
+              initial={{ opacity: 0, scale: 0.7 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.7 }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
             />
           </AnimatePresence>
         </div>
