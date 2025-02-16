@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion, AnimatePresence } from "motion/react";
 
 import image1 from "/images/img1.webp";
 import image2 from "/images/img2.webp";
@@ -7,53 +8,40 @@ import image4 from "/images/img4.webp";
 import image5 from "/images/img5.webp";
 
 const images = [
-  {
-    id: 1,
-    src: image1,
-    alt: "phone image",
-  },
-  {
-    id: 2,
-    src: image2,
-    alt: "phone image",
-  },
-  {
-    id: 3,
-    src: image3,
-    alt: "phone image",
-  },
-  {
-    id: 4,
-    src: image4,
-    alt: "phone image",
-  },
-  {
-    id: 5,
-    src: image5,
-    alt: "phone image",
-  },
+  { id: 1, src: image1, alt: "phone image" },
+  { id: 2, src: image2, alt: "phone image" },
+  { id: 3, src: image3, alt: "phone image" },
+  { id: 4, src: image4, alt: "phone image" },
+  { id: 5, src: image5, alt: "phone image" },
 ];
 
 function App() {
   const [selectedImage, setSelectedImage] = useState(images[0].src);
 
   return (
-    <main className="bg-neutral-100 min-h-screen gird place-content-center px-3">
+    <main className="bg-neutral-100 min-h-screen grid place-content-center px-3">
       <div>
         <h1 className="text-5xl text-center text-gray-950 mb-10 capitalize">
           moto edge 50 neo
         </h1>
 
-        {/* large image display */}
-        <div className="mx-auto">
-          <img
-            src={selectedImage}
-            alt="Selected Phone"
-            className="w-150 h-100 object-cover mx-auto rounded-xl overflow-hidden"
-          />
+        {/* Large Image Display with Animation */}
+        <div className="mx-auto overflow-hidden rounded-xl">
+          <AnimatePresence mode="wait">
+            <motion.img
+              key={selectedImage} // Triggers animation when image changes
+              src={selectedImage}
+              alt="Selected Phone"
+              className="w-150 h-100 object-cover mx-auto rounded-xl overflow-hidden"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+            />
+          </AnimatePresence>
         </div>
 
-        {/* thumbnail images */}
+        {/* Thumbnail Images */}
         <div className="flex items-center justify-center gap-4 flex-wrap mt-5">
           {images.map((image) => (
             <img
